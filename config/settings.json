@@ -7,21 +7,22 @@
     "max_packets_per_second": 1000
   },
   "detection": {
-    "max_connections_per_ip": 100,
-    "port_scan_threshold": 10,
-    "suspicious_ports": [22, 23, 25, 53, 80, 135, 139, 443, 445, 993, 995, 3389, 5900],
+    "max_connections_per_ip": 200,
+    "port_scan_threshold": 15,
+    "suspicious_ports": [22, 23, 25, 135, 139, 445, 993, 995, 3389, 5900],
     "blocked_ips": [],
     "whitelist_ips": ["127.0.0.1", "::1"],
+    "whitelist_processes": ["code-server", "vscode", "bash"],
     "scan_timeout": 30
   },
   "alerts": {
     "console_output": true,
     "log_file": "logs/security.log",
     "email_notifications": false,
-    "max_alerts_per_minute": 10,
+    "max_alerts_per_minute": 5,
     "alert_levels": {
       "info": "🔵",
-      "warning": "🟡",
+      "warning": "🟡", 
       "critical": "🔴",
       "blocked": "🚫"
     }
