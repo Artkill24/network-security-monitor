@@ -1,35 +1,26 @@
 {
   "monitoring": {
     "interface": "auto",
-    "scan_interval": 5,
+    "scan_interval": 10,
     "port_scan_detection": true,
-    "suspicious_connections": true,
-    "max_packets_per_second": 1000
+    "suspicious_connections": true
   },
   "detection": {
-    "max_connections_per_ip": 200,
+    "max_connections_per_ip": 500,
     "port_scan_threshold": 15,
     "suspicious_ports": [22, 23, 25, 135, 139, 445, 993, 995, 3389, 5900],
     "blocked_ips": [],
-    "whitelist_ips": ["127.0.0.1", "::1"],
-    "whitelist_processes": ["code-server", "vscode", "bash"],
-    "scan_timeout": 30
+    "whitelist_ips": ["127.0.0.1", "::1", "::ffff:127.0.0.1", "localhost"]
   },
   "alerts": {
     "console_output": true,
     "log_file": "logs/security.log",
     "email_notifications": false,
-    "max_alerts_per_minute": 5,
-    "alert_levels": {
-      "info": "🔵",
-      "warning": "🟡", 
-      "critical": "🔴",
-      "blocked": "🚫"
-    }
+    "max_alerts_per_minute": 3
   },
-  "reporting": {
-    "daily_reports": true,
-    "report_path": "logs/daily_reports/",
-    "stats_interval": 300
+  "dashboard": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": true
   }
 }
