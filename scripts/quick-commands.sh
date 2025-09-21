@@ -1,6 +1,10 @@
 #!/bin/bash
 # Network Security Monitor - Quick Commands
 
+# Source logo functions
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/logo.sh"
+
 # Colori
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -14,6 +18,7 @@ print_info() { echo -e "${CYAN}ℹ️${NC} $1"; }
 
 case "${1:-help}" in
     "setup")
+        show_logo
         print_step "🔧 Setup Network Security Monitor..."
         
         # Crea directory necessarie
@@ -31,21 +36,22 @@ case "${1:-help}" in
 {
   "monitoring": {
     "interface": "auto",
-    "scan_interval": 5,
+    "scan_interval": 10,
     "port_scan_detection": true,
     "suspicious_connections": true
   },
   "detection": {
-    "max_connections_per_ip": 200,
+    "max_connections_per_ip": 500,
     "port_scan_threshold": 15,
     "suspicious_ports": [22, 23, 25, 135, 139, 445, 993, 995, 3389, 5900],
     "blocked_ips": [],
-    "whitelist_ips": ["127.0.0.1", "::1"]
+    "whitelist_ips": ["127.0.0.1", "::1", "::ffff:127.0.0.1", "localhost"]
   },
   "alerts": {
     "console_output": true,
     "log_file": "logs/security.log",
-    "email_notifications": false
+    "email_notifications": false,
+    "max_alerts_per_minute": 3
   },
   "dashboard": {
     "host": "0.0.0.0",
@@ -62,6 +68,7 @@ CONF
         ;;
         
     "dashboard")
+        show_logo
         print_step "🌐 Avvio Dashboard Web..."
         print_info "Dashboard disponibile su: http://localhost:5000"
         cd "$(dirname "$0")/.."
@@ -77,12 +84,14 @@ CONF
         ;;
         
     "start")
+        show_logo
         print_step "🚀 Avvio Network Security Monitor completo..."
         cd "$(dirname "$0")/.."
         python main.py "$@"
         ;;
         
     "test")
+        show_logo
         print_step "🧪 Test rapido del sistema..."
         python -c "
 import sys, os
@@ -106,18 +115,39 @@ except Exception as e:
 "
         ;;
         
+    "demo")
+        show_logo
+        print_step "🎮 Modalità Demo con dati simulati..."
+        export NSM_DEMO_MODE=1
+        cd "$(dirname "$0")/.."
+        python web_dashboard.py
+        ;;
+        
+    "logo")
+        show_logo
+        ;;
+        
     "help"|*)
-        echo -e "${CYAN}🔒 Network Security Monitor - Quick Commands${NC}"
-        echo
+        show_logo
         echo -e "${YELLOW}Comandi disponibili:${NC}"
-        echo "  setup      - Setup completo progetto"  
+        echo ""
+        echo -e "${CYAN}📦 Setup e Configurazione:${NC}"
+        echo "  setup      - Setup completo progetto"
+        echo "  test       - Test rapido sistema"
+        echo ""
+        echo -e "${CYAN}🚀 Avvio Applicazione:${NC}"
         echo "  dashboard  - Avvia dashboard web"
         echo "  start      - Avvia monitor completo"
-        echo "  test       - Test rapido sistema"
+        echo "  demo       - Modalità demo con dati simulati"
+        echo ""
+        echo -e "${CYAN}🎨 Utilità:${NC}"
+        echo "  logo       - Mostra logo ASCII"
         echo "  help       - Mostra questo aiuto"
-        echo
+        echo ""
         echo -e "${CYAN}Esempi:${NC}"
         echo "  ./scripts/quick-commands.sh setup"
         echo "  ./scripts/quick-commands.sh dashboard"
+        echo "  ./scripts/quick-commands.sh demo"
+        echo ""
         ;;
 esac

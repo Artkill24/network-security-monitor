@@ -1,320 +1,222 @@
 # 🔒 Network Security Monitor
 
-Un tool completo per il monitoraggio della sicurezza di rete in tempo reale, progettato per rilevare e bloccare attività sospette e potenziali minacce.
+[![GitHub Codespaces](https://img.shields.io/badge/GitHub-Codespaces-blue.svg)](https://github.com/codespaces)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Dashboard](https://img.shields.io/badge/Dashboard-Real--Time-green.svg)](http://localhost:5000)
+[![PayPal](https://img.shields.io/badge/PayPal-Donate-blue.svg)](https://paypal.me/saadkai)
 
-## ✨ Caratteristiche
+> **Sistema avanzato di monitoraggio della sicurezza di rete in tempo reale, completamente ottimizzato per GitHub Codespaces con dashboard web interattiva**
 
-- **Monitoraggio di Rete in Tempo Reale**: Analisi del traffico di rete e delle connessioni
-- **Rilevamento Minacce Intelligente**: Algoritmi per identificare brute force, port scan, e anomalie
-- **Sistema di Alert Avanzato**: Notifiche immediate con logging e opzioni email
-- **Threat Intelligence**: Aggiornamento automatico delle blacklist
-- **Interfaccia da Terminale**: Controllo completo via CLI
-- **Configurazione Flessibile**: File JSON per personalizzare ogni aspetto
+## ⚡ Quick Start (30 secondi)
 
-## 🚀 Installazione Rapida
-
-### 1. Clona il Repository
-
+### 🚀 GitHub Codespaces - Zero Click Deploy
 ```bash
+# 1. Click "Code" → "Codespaces" → "Create codespace on main"
+# 2. Setup automatico (esegui nel terminale Codespaces):
+./scripts/quick-commands.sh setup
+
+# 3. Avvia dashboard web
+./scripts/quick-commands.sh dashboard
+
+# 4. Dashboard pronta su: http://localhost:5000
+🌐 Dashboard Live Features
+La dashboard è immediatamente operativa con:
+
+📊 Grafici real-time del traffico di rete con Plotly.js
+🔍 Monitoraggio connessioni attive in tempo reale
+🚨 Sistema di alert con notifiche live via WebSocket
+🛡️ Controlli interattivi per blocco IP istantaneo
+📱 Design responsive ottimizzato per ogni dispositivo
+🌙 Dark theme professionale per monitoring 24/7
+
+✨ Caratteristiche Principali
+��️ Security Monitoring Avanzato
+
+Port Scan Detection: Algoritmi per identificare scansioni sistematiche
+Brute Force Prevention: Monitora tentativi di login multipli e sospetti
+Traffic Anomaly Analysis: AI per analizzare pattern di traffico anomali
+Automatic IP Blocking: Sistema automatico di blocco IP malevoli
+Threat Intelligence: Database minacce aggiornato in tempo reale
+Process Monitoring: Controllo processi sospetti e malware
+
+🌐 Dashboard Web Professionale
+
+Modern UI/UX: Design gradiente blu professionale
+Interactive Charts: Grafici Plotly.js con zoom, pan, export
+Live WebSocket Updates: Aggiornamenti istantanei senza refresh
+Mobile First: Responsive design per smartphone e tablet
+Real-time Stats: Metriche live CPU, memoria, rete
+Export Functions: PDF, JSON, CSV per report e analisi
+
+📊 Sistema Alert Intelligente
+
+Multi-Level Severity: Info 🔵, Warning 🟡, Critical 🔴, Blocked 🚫
+Smart Notifications: Alert contestualizzati con dettagli tecnici
+Rate Limiting: Controllo intelligente frequenza notifiche
+Log Correlation: Correlazione eventi per identificare attacchi
+Email Integration: Notifiche SMTP configurabili
+Slack/Discord: Webhook per team collaboration
+
+⚙️ Cloud-Native & Codespaces Optimized
+
+Zero-Click Setup: Configurazione automatica completa
+Instant Port Forwarding: Dashboard immediatamente accessibile
+Cloud Performance: Threading ottimizzato per VM cloud
+Auto-scaling: Adattamento automatico alle risorse disponibili
+Container Ready: Supporto Docker e Kubernetes
+CI/CD Ready: GitHub Actions preconfigurate
+
+🛠️ Comandi Rapidi
+ComandoDescrizioneOutput./scripts/quick-commands.sh setupSetup completo progetto✅ Environment pronto./scripts/quick-commands.sh dashboardAvvia dashboard web🌐 http://localhost:5000./scripts/quick-commands.sh startMonitor completo sicurezza🛡️ Full monitoring./scripts/quick-commands.sh testTest sistema e dipendenze🧪 Health check./scripts/quick-commands.sh helpLista completa comandi📋 Guida rapida
+📋 Installazione Locale
+Setup Tradizionale
+bash# 1. Clone repository
 git clone https://github.com/Artkill24/network-security-monitor.git
 cd network-security-monitor
-```
 
-### 2. Installa le Dipendenze
+# 2. Virtual environment (raccomandato)
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
 
-```bash
+# 3. Install dependencies
 pip install -r requirements.txt
-```
 
-### 3. Crea le Directory
+# 4. Setup progetto
+./scripts/quick-commands.sh setup
 
-```bash
-mkdir -p logs config
-```
-
-### 4. Avvia il Monitor
-
-```bash
-# Modalità standard
-python main.py
-
-# Con configurazione personalizzata
-python main.py --config config/settings.json
-
-# Modalità verbosa
-python main.py --verbose
-```
-
-## 📋 Requisiti di Sistema
-
-- **Python**: 3.7+
-- **Sistema Operativo**: Linux, macOS, Windows
-- **Privilegi**: Root/Administrator per packet sniffing completo
-- **RAM**: Minimo 512MB
-- **Dipendenze**: Vedi `requirements.txt`
-
-## ⚙️ Configurazione
-
-Il file `config/settings.json` permette di personalizzare ogni aspetto:
-
-```json
-{
+# 5. Avvia dashboard
+./scripts/quick-commands.sh dashboard
+⚙️ Configurazione
+📝 File Configurazione: config/settings.json
+json{
   "monitoring": {
     "interface": "auto",
-    "scan_interval": 5,
+    "scan_interval": 10,
     "port_scan_detection": true,
     "suspicious_connections": true
   },
   "detection": {
-    "max_connections_per_ip": 100,
-    "port_scan_threshold": 10,
-    "suspicious_ports": [22, 23, 3389, 5900],
-    "blocked_ips": []
+    "max_connections_per_ip": 500,
+    "port_scan_threshold": 15,
+    "suspicious_ports": [22, 23, 25, 135, 139, 445, 993, 995, 3389, 5900],
+    "blocked_ips": [],
+    "whitelist_ips": ["127.0.0.1", "::1", "::ffff:127.0.0.1", "localhost"]
   },
   "alerts": {
     "console_output": true,
     "log_file": "logs/security.log",
-    "email_notifications": false
+    "email_notifications": false,
+    "max_alerts_per_minute": 3
+  },
+  "dashboard": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": true
   }
 }
-```
+�� Testing
+bash# Test rapido importazioni e configurazione
+./scripts/quick-commands.sh test
 
-### Opzioni di Configurazione
-
-#### Monitoraggio
-- `interface`: Interfaccia di rete da monitorare ("auto" per rilevamento automatico)
-- `scan_interval`: Intervallo di scansione in secondi
-- `port_scan_detection`: Abilita rilevamento port scan
-- `suspicious_connections`: Monitora connessioni sospette
-
-#### Rilevamento
-- `max_connections_per_ip`: Massimo numero di connessioni per IP
-- `port_scan_threshold`: Soglia per rilevare port scan
-- `suspicious_ports`: Lista porte da monitorare
-- `blocked_ips`: IP da bloccare immediatamente
-
-#### Alert
-- `console_output`: Mostra alert sulla console
-- `log_file`: File di log per gli alert
-- `email_notifications`: Abilita notifiche email
-
-## 🖥️ Utilizzo
-
-### Comandi Base
-
-```bash
-# Avvia monitoraggio
-python main.py
-
-# Mostra status
-python main.py --status
-
-# Usa configurazione personalizzata
-python main.py --config my_config.json
-
-# Modalità verbosa
-python main.py --verbose
-```
-
-### Durante l'Esecuzione
-
-Il tool mostra informazioni in tempo reale:
-
-```
-🔒 Network Security Monitor - Avvio...
-⏰ Timestamp: 2024-01-15 14:30:22
-============================================================
-🔍 Avvio monitoraggio su interfaccia: eth0
-🛡️  Avvio Threat Detector...
-✅ Monitoraggio avviato! Premi Ctrl+C per fermare.
-
-🟡 ALERT: 192.168.1.100 - Troppe connessioni (150)
-🔴 THREAT DETECTED: 10.0.0.50 - Port Scan Detected
-🚫 IP BLOCKED: 10.0.0.50
-```
-
-### Tipologie di Alert
-
-- 🔵 **Info**: Attività normale ma degna di nota
-- 🟡 **Warning**: Attività sospetta che richiede attenzione
-- 🔴 **Critical**: Minaccia attiva rilevata
-- 🚫 **Blocked**: IP bloccato automaticamente
-
-## 📊 Monitoraggio e Statistiche
-
-### Tipi di Minacce Rilevate
-
-1. **Brute Force Attack**: Tentativi di login multipli falliti
-2. **Port Scan**: Scansione sistematica delle porte
-3. **DDoS Patterns**: Pattern di traffico da attacco distribuito
-4. **Suspicious Processes**: Processi potenzialmente malevoli
-5. **Anomalous Connections**: Connessioni a porte inusuali
-
-### File di Log
-
-Il sistema genera log dettagliati in:
-
-- `logs/security.log`: Log principale degli alert
-- `logs/daily_reports/`: Report giornalieri automatici
-
-Formato log:
-```
-2024-01-15 14:35:22 | WARNING | ALERT: {"alert_id": "a1b2c3d4", "threat_type": "Port Scan", "source_ip": "192.168.1.50"}
-```
-
-## 🛡️ Funzionalità di Sicurezza
-
-### Rilevamento Automatico
-
-- **Port Scanning**: Rileva scansioni sistematiche delle porte
-- **Brute Force**: Identifica tentativi di autenticazione multipli
-- **Traffic Anomalies**: Analizza pattern di traffico anomali
-- **Process Monitoring**: Monitora processi sospetti
-
-### Blocco Automatico
-
-Il sistema può bloccare automaticamente IP sospetti:
-
-- Soglie configurabili per ogni tipo di minaccia
-- Whitelist per IP fidati
-- Blocco temporaneo o permanente
-
-### Threat Intelligence
-
-- Aggiornamento automatico delle blacklist pubbliche
-- Database di IP malevoli noti
-- Integrazione con feed di threat intelligence
-
-## 🔧 Personalizzazione Avanzata
-
-### Aggiungere Nuovi Rilevatori
-
-Puoi estendere il `ThreatDetector` per nuove minacce:
-
-```python
-def _detect_custom_threat(self):
-    # La tua logica personalizzata
-    if suspicious_condition:
-        self._trigger_threat_alert(ip, "Custom Threat", details)
-```
-
-### Notifiche Email
-
-Configura le notifiche email aggiungendo al config:
-
-```json
-{
-  "email": {
-    "smtp_server": "smtp.gmail.com",
-    "smtp_port": 587,
-    "username": "tuo@email.com",
-    "password": "password",
-    "to_email": "admin@azienda.com"
-  }
-}
-```
-
-### Script di Automazione
-
-Crea script per automazione:
-
-```bash
-#!/bin/bash
-# auto_start.sh
-cd /path/to/security-monitor
-python main.py --config production.json >> logs/startup.log 2>&1 &
-```
-
-## 🔍 Troubleshooting
-
-### Problemi Comuni
-
-**"Permission Denied" per packet sniffing**
-```bash
-# Esegui con privilegi root
-sudo python main.py
-```
-
-**Interfaccia di rete non trovata**
-```bash
-# Specifica manualmente nel config
-"interface": "eth0"
-```
-
-**Troppe notifiche**
-```bash
-# Aumenta la soglia nel config
-"max_alerts_per_minute": 5
-```
-
-### Debug Mode
-
-Per debugging dettagliato:
-
-```bash
-python main.py --verbose
-```
-
-### Log Analysis
-
-Analizza i log con:
-
-```bash
-# Filtra alert critici
-grep "CRITICAL" logs/security.log
-
-# Conta alert per IP
-grep -o '"source_ip": "[^"]*"' logs/security.log | sort | uniq -c
-```
-
-## 📈 Performance
-
-### Ottimizzazione
-
-- **Memoria**: ~50-100MB in uso normale
-- **CPU**: <5% su sistema moderno
-- **I/O**: Log rotazione automatica
-- **Rete**: Impatto minimo sul traffico
-
-### Scalabilità
-
-Il tool può gestire:
-- Reti fino a 1000+ dispositivi
-- Migliaia di connessioni simultanee
-- Centinaia di alert al minuto
-
-## 🤝 Contribuire
-
-### Come Contribuire
-
-1. Fork del repository
-2. Crea un branch per la feature: `git checkout -b feature/nuova-funzionalità`
-3. Commit delle modifiche: `git commit -m 'Aggiungi nuova funzionalità'`
-4. Push del branch: `git push origin feature/nuova-funzionalità`
-5. Apri una Pull Request
-
-### Reporting Bug
-
-Usa le Issues di GitHub per segnalare bug, includendo:
-- Versione del sistema operativo
-- Versione Python
-- Log di errore completo
-- Passi per riprodurre
-
-## 📄 Licenza
-
-Questo progetto è rilasciato sotto licenza MIT. Vedi il file `LICENSE` per i dettagli.
-
-## ⚠️ Disclaimer
-
-Questo tool è progettato per scopi di sicurezza legittimi. L'utilizzo per attività illegali è vietato e non supportato. Utilizzare sempre in conformità con le leggi locali e le policy aziendali.
-
-## 📞 Supporto
-
-- **Issues**: [GitHub Issues](https://github.com/tuousername/network-security-monitor/issues)
-- **Documentazione**: [Wiki del progetto](https://github.com/tuousername/network-security-monitor/wiki)
-- **Sicurezza**: Per vulnerabilità, contatta privatamente
-
----
-
-**Network Security Monitor** - Proteggendo la tua rete, un pacchetto alla volta 🛡️
+# Test completo del sistema
+python -c "
+from src.network_monitor import NetworkMonitor
+from src.threat_detector import ThreatDetector
+from src.alert_system import AlertSystem
+print('✅ Tutti i moduli funzionanti')
+"
+
+# Test dashboard endpoint
+curl -s http://localhost:5000/api/stats
+📊 Dashboard Features
+🎯 Componenti Dashboard
+
+📈 Statistiche Live
+
+Minacce rilevate in tempo reale
+IP bloccati automaticamente
+Connessioni attive monitorate
+Pacchetti analizzati
+
+
+📋 Alert Recenti
+
+Lista alert con timestamp
+Livelli di severità colorati
+Azioni rapide per blocco IP
+Auto-refresh ogni 5 secondi
+
+
+📊 Grafico Traffico Real-Time
+
+Bytes sent/received
+Aggiornamento ogni 2 secondi
+Zoom e pan interattivi
+Export dati grafici
+
+
+
+🌐 URLs Dashboard
+
+Dashboard Principale: http://localhost:5000
+API Stats: http://localhost:5000/api/stats
+API Alerts: http://localhost:5000/api/alerts
+API Traffic: http://localhost:5000/api/traffic
+
+🔒 Sicurezza
+
+IP Whitelisting: Protezione IP fidati
+Rate Limiting: Controllo frequenza alert
+Input Validation: Validazione dati input
+Secure Logging: Log sicuri senza dati sensibili
+Process Isolation: Monitoraggio processi isolato
+
+📈 Performance
+
+Startup Time: ~5-10 secondi
+Memory Usage: ~50-100MB baseline
+CPU Usage: <5% su hardware moderno
+Network Overhead: Minimale
+Dashboard Response: <100ms
+
+🤝 Contribuire
+
+Fork del repository
+Clone del fork
+Branch feature: git checkout -b feature/nuova-funzionalita
+Commit: git commit -m 'feat: aggiungi nuova funzionalità'
+Push: git push origin feature/nuova-funzionalita
+Pull Request via GitHub
+
+💰 Supporta il Progetto
+Se questo progetto ti è stato utile, considera una donazione:
+Mostra immagine
+Perché donare?
+
+🛠️ Sviluppo Continuo: Nuove funzionalità e miglioramenti
+🐛 Bug Fixes: Risoluzione rapida dei problemi
+📚 Documentazione: Guide e tutorial aggiornati
+🔒 Security Updates: Patch di sicurezza tempestive
+🌐 Community Support: Supporto attivo agli utenti
+
+📚 Links
+
+📘 Repository: GitHub
+🐛 Issues: Bug Reports & Feature Requests
+🚀 Releases: Changelog & Downloads
+💰 Donations: PayPal Support
+
+📄 Licenza
+Questo progetto è rilasciato sotto licenza MIT.
+⚠️ Disclaimer
+Questo tool è progettato per scopi di sicurezza legittimi. L'utilizzo per attività illegali è vietato. Utilizzare sempre in conformità con le leggi locali e le policy aziendali.
+
+<div align="center">
+🔒 Network Security Monitor
+Proteggendo la tua rete, un pacchetto alla volta
+Fatto con ❤️ per la community della sicurezza informatica
+Ready for GitHub Codespaces 🚀 | Real-time Dashboard 📊 | Production Ready 🏭
+Mostra immagine
+Mostra immagine
+</div>
